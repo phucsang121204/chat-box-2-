@@ -1,14 +1,12 @@
-// ===================== CONFIG =====================
-  // ✅ Đúng
+
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
-// ===================== STATE =====================
-// Dòng 8 - SAU
-// ✅ Sửa lại dòng 8
-let apiKey = localStorage.getItem("gemini_api_key") || "";
-let conversationHistory = []; // { role: "user"|"model", parts: [{text}] }
 
-// ===================== ELEMENTS =====================
+
+
+let apiKey = localStorage.getItem("gemini_api_key") || "";
+let conversationHistory = []; 
+
 const apiSetup    = document.getElementById("apiSetup");
 const apiKeyInput = document.getElementById("apiKeyInput");
 const saveApiBtn  = document.getElementById("saveApiBtn");
@@ -17,7 +15,6 @@ const userInput   = document.getElementById("userInput");
 const sendBtn     = document.getElementById("sendBtn");
 const clearBtn    = document.getElementById("clearBtn");
 
-// ===================== INIT =====================
 function init() {
   if (apiKey) {
     apiSetup.classList.add("hidden");
@@ -26,7 +23,6 @@ function init() {
   userInput.focus();
 }
 
-// ===================== API KEY =====================
 saveApiBtn.addEventListener("click", () => {
   const key = apiKeyInput.value.trim();
   if (!key) {
@@ -43,7 +39,6 @@ apiKeyInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") saveApiBtn.click();
 });
 
-// ===================== SEND MESSAGE =====================
 sendBtn.addEventListener("click", sendMessage);
 
 userInput.addEventListener("keydown", (e) => {
@@ -53,7 +48,6 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
-// Auto resize textarea
 userInput.addEventListener("input", () => {
   userInput.style.height = "auto";
   userInput.style.height = Math.min(userInput.scrollHeight, 140) + "px";
@@ -69,11 +63,10 @@ async function sendMessage() {
     return;
   }
 
-  // Clear welcome message if present
   const welcome = chatMessages.querySelector(".welcome-msg");
   if (welcome) welcome.remove();
 
-  // Append user message
+
   appendMessage("user", text);
   conversationHistory.push({ role: "user", parts: [{ text }] });
 
@@ -82,7 +75,6 @@ async function sendMessage() {
   userInput.style.height = "auto";
   sendBtn.disabled = true;
 
-  // Show typing indicator
   const typingEl = showTyping();
 
   try {
@@ -112,7 +104,6 @@ async function sendMessage() {
   scrollToBottom();
 }
 
-// ===================== GEMINI API CALL =====================
 async function callGeminiAPI(history) {
   const res = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
     method: "POST",
@@ -191,7 +182,6 @@ function shake(el) {
   setTimeout(() => { el.style.animation = ""; }, 400);
 }
 
-// ===================== CLEAR CHAT =====================
 clearBtn.addEventListener("click", () => {
   conversationHistory = [];
   chatMessages.innerHTML = "";
@@ -205,7 +195,6 @@ clearBtn.addEventListener("click", () => {
   chatMessages.appendChild(welcome);
 });
 
-// ===================== SHAKE KEYFRAME (dynamic) =====================
 const styleEl = document.createElement("style");
 styleEl.textContent = `
   @keyframes shakeInput {
@@ -218,5 +207,4 @@ styleEl.textContent = `
 `;
 document.head.appendChild(styleEl);
 
-// ===================== START =====================
 init();

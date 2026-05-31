@@ -1,4 +1,4 @@
-/* ===================== RESET & BASE ===================== */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -28,7 +28,6 @@ html, body {
   overflow: hidden;
 }
 
-/* ===================== BACKGROUND ===================== */
 .bg-grid {
   position: fixed;
   inset: 0;
@@ -64,7 +63,6 @@ html, body {
   50%       { transform: translateY(30px); }
 }
 
-/* ===================== LAYOUT ===================== */
 .chat-wrapper {
   position: relative;
   z-index: 1;
@@ -81,7 +79,6 @@ html, body {
   overflow: hidden;
 }
 
-/* ===================== HEADER ===================== */
 .chat-header {
   display: flex;
   align-items: center;
@@ -167,7 +164,6 @@ html, body {
   background: rgba(248,113,113,0.08);
 }
 
-/* ===================== API SETUP ===================== */
 .api-setup {
   padding: 16px 22px;
   background: rgba(129,140,248,0.05);
@@ -232,7 +228,6 @@ html, body {
 }
 .api-hint a:hover { text-decoration: underline; }
 
-/* ===================== MESSAGES ===================== */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -249,7 +244,6 @@ html, body {
   border-radius: 99px;
 }
 
-/* Welcome */
 .welcome-msg {
   display: flex;
   flex-direction: column;
@@ -279,7 +273,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* Message bubbles */
 .message {
   display: flex;
   gap: 10px;
@@ -341,7 +334,6 @@ html, body {
   color: var(--text);
 }
 
-/* Typing indicator */
 .typing-indicator {
   display: flex;
   gap: 5px;
@@ -365,7 +357,6 @@ html, body {
   30%            { transform: translateY(-6px); opacity: 1; }
 }
 
-/* ===================== INPUT AREA ===================== */
 .chat-input-area {
   padding: 14px 18px 16px;
   border-top: 1px solid var(--border);
@@ -432,7 +423,6 @@ textarea#userInput::-webkit-scrollbar-thumb {
   margin-top: 8px;
 }
 
-/* ===================== RESPONSIVE ===================== */
 @media (max-width: 480px) {
   .chat-wrapper {
     width: 100vw;
